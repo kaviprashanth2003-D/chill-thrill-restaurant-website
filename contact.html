@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Chill Thrill</title>
+  <link rel="stylesheet" href="style.css?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .contact-header { text-align: center; padding: 120px 20px 40px; background: var(--card-bg); border-bottom: var(--glass-border); position: relative; overflow: hidden; }
+    .contact-header::before { content: ''; position: absolute; top: -50px; left: -50px; width: 300px; height: 300px; background: var(--secondary); filter: blur(150px); opacity: 0.1; }
+
+    .contact-wrap { display: flex; gap: 50px; margin-top: 50px; background: var(--card-bg); border-radius: 20px; border: var(--glass-border); overflow: hidden; padding: 40px; box-shadow: var(--shadow); }
+    .contact-info { flex: 1; }
+    .contact-info h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+    .contact-info p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; }
+    .info-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; }
+    .info-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 243, 255, 0.1); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .info-text h4 { font-size: 1.2rem; margin-bottom: 5px; color: var(--text-main); }
+    .info-text p { margin-bottom: 0; font-size: 1rem; color: var(--text-muted); }
+    
+    .social-links { display: flex; gap: 15px; margin-top: 30px; }
+    .social-links a { width: 45px; height: 45px; border-radius: 50%; background: var(--bg-color); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition); border: 1px solid var(--border-color); }
+    .social-links a:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+    .contact-form { flex: 1.5; background: rgba(0,0,0,0.15); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+    .form-group { margin-bottom: 25px; }
+    .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--text-muted); }
+    .form-control { width: 100%; padding: 15px 20px; border-radius: 10px; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-family); font-size: 1rem; outline: none; transition: var(--transition); }
+    .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 10px rgba(0, 243, 255, 0.2); }
+    textarea.form-control { resize: vertical; min-height: 150px; }
+    
+    .map-container { margin-top: 80px; border-radius: 20px; overflow: hidden; border: var(--glass-border); height: 400px; box-shadow: var(--shadow); position: relative; }
+    .map-container iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg); transition: filter 0.3s; }
+    html[data-theme='light'] .map-container iframe { filter: none; }
+    
+    @media (max-width: 900px) {
+        .contact-wrap { flex-direction: column; padding: 25px; }
+        .contact-form { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"><div class="spinner"></div></div>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Chill<span class="text-pink">Thrill</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="admin.html" id="nav-admin-link" style="display: none;">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <div id="auth-nav" style="display:flex; align-items:center; margin-right: 15px;"></div>
+        <button id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="contact-header">
+    <h1 class="animate-text" style="font-size: 3.5rem; font-weight: 800;">Get In <span class="text-secondary">Touch</span></h1>
+    <p class="animate-text-delay" style="color: var(--text-muted); margin-top: 10px;">Reach out for reservations, events, or cyber-dining queries.</p>
+  </div>
+
+  <section class="container" style="padding-top: 50px;">
+    <div class="contact-wrap animate-text-delay-2">
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>Drop us a line or visit our hub. We're always online and ready to serve.</p>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-text">
+            <h4>Location</h4>
+            <p>123 Neon Avenue, CyberCity, Sector 7G</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <p>hello@chillthrill.com</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-phone"></i></div>
+          <div class="info-text">
+            <h4>Phone</h4>
+            <p>+1 (555) 123-4567</p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form id="contact-us-form" onsubmit="window.submitContactForm(event)">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-control" placeholder="John Matrix" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" class="form-control" placeholder="john@domain.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="Write your message or reservation request here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 10px; padding: 15px; font-size: 1.1rem;">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="map-container animate-text-delay">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1683057398150!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Chill<span class="text-pink">Thrill</span></h3>
+        <p>Experience the ultimate fusion of taste and aesthetics in the heart of the city.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="menu.html">Our Menu</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt text-blue"></i> 123 Neon Avenue, CyberCity</p>
+        <p><i class="fas fa-phone text-pink"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope text-blue"></i> hello@chillthrill.com</p>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>Subscribe for updates and exclusive offers.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Email Address" required>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Chill Thrill. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="script.js?v=3"></script>
+</body>
+</html>

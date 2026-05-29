@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chill Thrill | Modern Dining</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="description" content="Experience the thrill of modern dining at Chill Thrill.">
+</head>
+
+<body>
+  <!-- ========================================== -->
+  <!-- LOADER SECTION                             -->
+  <!-- Displays a spinning animation while loading-->
+  <!-- ========================================== -->
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION BAR                             -->
+  <!-- Contains logo, links, auth state & theme   -->
+  <!-- ========================================== -->
+  <header class="navbar glowing-bottom">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Chill<span class="text-pink">Thrill</span></a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html" id="nav-admin-link" style="display: none;">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <div id="auth-nav" style="display:flex; align-items:center; margin-right: 15px;"></div>
+        <button id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- HERO SECTION                               -->
+  <!-- Main landing area with call to action      -->
+  <!-- ========================================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="animate-text">Taste the <span class="text-blue">Thrill</span><br>of Modern Dining</h1>
+      <p class="animate-text-delay">Experience culinary excellence with our vibrant flavors, stunning cyberpunk
+        atmosphere, and an unforgettable journey of taste.</p>
+      <div class="hero-buttons animate-text-delay-2">
+        <a href="menu.html" class="btn btn-primary">Explore Menu</a>
+        <a href="contact.html" class="btn btn-outline">Book a Table</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="./images/hero.jpeg" alt="Delicious Food" class="rotate-img">
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- FEATURED DISHES OVERVIEW                   -->
+  <!-- Highlights top 3 popular menu items        -->
+  <!-- ========================================== -->
+  <section class="container" style="padding-top: 50px;">
+    <h2 class="section-title">Featured <span class="text-pink">Favorites</span></h2>
+    <div class="favorites-grid">
+      <div class="fav-card auto-glow">
+        <div class="fav-img-wrap"><img src="./images/ribeye.png" class="fav-img" alt="Ribeye Steak"></div>
+        <h3 class="fav-title">Neon Ribeye</h3>
+        <p class="fav-desc">Premium grass-fed steak with a special neon glaze and crispy edges.</p>
+        <p class="fav-price">Rs. 3500.00</p>
+        <a href="menu.html" class="btn btn-outline" style="width: 100%">Order Now</a>
+      </div>
+      <div class="fav-card auto-glow">
+        <div class="fav-img-wrap"><img src="./images/pizza.png" class="fav-img" alt="Cyber Pizza"></div>
+        <h3 class="fav-title">Cyber Slice</h3>
+        <p class="fav-desc">Authentic wood-fired pizza overloaded with exotic cyber-city toppings.</p>
+        <p class="fav-price">Rs. 1850.00</p>
+        <a href="menu.html" class="btn btn-outline" style="width: 100%">Order Now</a>
+      </div>
+      <div class="fav-card auto-glow">
+        <div class="fav-img-wrap"><img src="./images/burger.png" class="fav-img" alt="Glitch Burger"></div>
+        <h3 class="fav-title">Glitch Burger</h3>
+        <p class="fav-desc">Double smash patty with melting cheese, secret sauce, and a black brioche bun.</p>
+        <p class="fav-price">Rs. 1500.00</p>
+        <a href="menu.html" class="btn btn-outline" style="width: 100%">Order Now</a>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 360° SHORTS SECTION                        -->
+    <!-- Auto-playing video previews of food items  -->
+    <!-- ========================================== -->
+    <h2 class="section-title" style="margin-top: 60px;">360° <span class="text-blue">Shorts</span></h2>
+    <div class="shorts-container">
+      <div class="short-card auto-glow animate-text" onclick="window.openVideoModal('./videos/burger.mp4')">
+        <video src="./videos/burger.mp4" autoplay="autoplay" muted="muted" loop playsinline poster="./videos/burger.png"
+          class="short-video"></video>
+        <div class="short-info">
+          <h4>Glitch Burger</h4>
+        </div>
+      </div>
+      <div class="short-card auto-glow animate-text-delay" onclick="window.openVideoModal('./videos/pizza.mp4')">
+        <video src="./videos/pizza.mp4" autoplay="autoplay" muted="muted" loop playsinline poster="./videos/pizza.png"
+          class="short-video"></video>
+        <div class="short-info">
+          <h4>Cyber Slice</h4>
+        </div>
+      </div>
+      <div class="short-card auto-glow animate-text-delay-2" onclick="window.openVideoModal('./videos/steak.mp4')">
+        <video src="./videos/steak.mp4" autoplay="autoplay" muted="muted" loop playsinline poster="./videos/steak.png"
+          class="short-video"></video>
+        <div class="short-info">
+          <h4>Neon Ribeye</h4>
+        </div>
+      </div>
+      <div class="short-card auto-glow animate-text-delay-2" onclick="window.openVideoModal('./videos/mojito.mp4')">
+        <video src="./videos/mojito.mp4" autoplay="autoplay" muted="muted" loop playsinline poster="./videos/mojito.png"
+          class="short-video"></video>
+        <div class="short-info">
+          <h4>Quantum Mojito</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- VIDEO MODAL                                -->
+  <!-- Popup overlay for full video playback      -->
+  <!-- ========================================== -->
+  <div id="video-modal" class="modal-overlay" onclick="window.closeVideoModal()">
+    <div class="modal-content glowing-modal" onclick="event.stopPropagation()">
+      <span class="modal-close" style="top: 15px; right: 20px; font-size: 1.5rem;" onclick="window.closeVideoModal()"><i
+          class="fas fa-times"></i></span>
+      <video id="modal-video" src="" controls autoplay
+        style="width: 100%; border-radius: 10px; max-height: 70vh; margin-top: 15px; border: 2px solid var(--primary);"></video>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- FOOTER SECTION                             -->
+  <!-- Links, social icons, and contact info      -->
+  <!-- ========================================== -->
+  <footer class="footer glowing-top">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Chill<span class="text-pink">Thrill</span></h3>
+        <p>Experience the ultimate fusion of taste and aesthetics in the heart of the city.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="menu.html">Our Menu</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt text-blue"></i> 123 Neon Avenue, CyberCity</p>
+        <p><i class="fas fa-phone text-pink"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope text-blue"></i> hello@chillthrill.com</p>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>Subscribe for updates and exclusive offers.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Email Address" required>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Chill Thrill. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=5"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Chill Thrill</title>
+    <link rel="stylesheet" href="style.css?v=5">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <!-- ========================================== -->
+    <!-- LOADER SECTION                             -->
+    <!-- Displays a spinning animation while loading-->
+    <!-- ========================================== -->
+    <div class="loader"><div class="spinner"></div></div>
+
+    <!-- ========================================== -->
+    <!-- NAVIGATION BAR                             -->
+    <!-- Contains logo, links, auth state & theme   -->
+    <!-- ========================================== -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">Chill<span class="text-pink">Thrill</span></a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="admin.html" id="nav-admin-link" style="display: none;">Admin</a>
+        </nav>
+        <div class="nav-actions">
+          <div id="auth-nav" style="display:flex; align-items:center; margin-right: 15px;"></div>
+          <button id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+          <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- LOGIN FORM SECTION                         -->
+    <!-- Main authentication form                   -->
+    <!-- ========================================== -->
+    <div class="container auth-wrapper">
+        <div class="auth-card animate-text">
+            <h2 class="modal-title" style="margin-bottom:10px;">Welcome <span>Back</span></h2>
+            <p class="modal-subtitle" style="margin-bottom:30px;">Sign in to unlock exclusive cyber-dining perks.</p>
+            
+            <form id="login-form" onsubmit="window.loginUser(event)">
+                <div class="input-container">
+                    <input type="email" id="login-email" class="adv-input" required placeholder="Email Address">
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+                <div class="input-container" style="margin-bottom: 25px;">
+                    <input type="password" id="login-password" class="adv-input" required placeholder="Password">
+                    <i class="fas fa-lock input-icon"></i>
+                    <i class="fas fa-eye show-pass-icon" onclick="window.togglePassword('login-password')"></i>
+                </div>
+                
+                <div class="auth-options">
+                    <label style="color: var(--text-muted); cursor: pointer;"><input type="checkbox" id="remember-me" style="margin-right: 5px;"> Remember Me</label>
+                    <a href="#" onclick="window.handleForgotPassword(); event.preventDefault();">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn-place-order" style="margin-top: 10px;">Sign In <i class="fas fa-sign-in-alt" style="margin-left: 8px;"></i></button>
+                <p class="auth-switch">New to Chill Thrill? <a href="signup.html">Create an Account</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FOOTER SECTION                             -->
+    <!-- Links, social icons, and contact info      -->
+    <!-- ========================================== -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h3>Chill<span class="text-pink">Thrill</span></h3>
+          <p>Experience the ultimate fusion of taste and aesthetics in the heart of the city.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="menu.html">Our Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt text-blue"></i> 123 Neon Avenue, CyberCity</p>
+          <p><i class="fas fa-phone text-pink"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-envelope text-blue"></i> hello@chillthrill.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Chill Thrill. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="script.js?v=5"></script>
+</body>
+</html>

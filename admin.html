@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="admin.css?v=3">
+</head>
+
+<body>
+  <div id="toast-container" class="toast-container"></div>
+  <!-- Background Elements for smooth glow -->
+  <div class="bg-shape circle-1"></div>
+  <div class="bg-shape circle-2"></div>
+
+  <div class="dashboard-container">
+
+    <!-- ========================================== -->
+    <!-- LEFT SIDEBAR                               -->
+    <!-- Navigation menu for dashboard sections     -->
+    <!-- ========================================== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        <h2 class="logo-text">Chill Thrill</h2>
+        <div class="mobile-close" id="sidebar-close"><i class="fas fa-times"></i></div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item active" data-target="dashboard">
+          <a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item" data-target="users">
+          <a href="#"><i class="fas fa-users"></i><span>Users</span></a>
+        </li>
+        <li class="nav-item" data-target="products">
+          <a href="#"><i class="fas fa-box"></i><span>Products</span></a>
+        </li>
+        <li class="nav-item" data-target="analytics">
+          <a href="#"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+        </li>
+        <li class="nav-item" data-target="sales">
+          <a href="#"><i class="fas fa-chart-pie"></i><span>Sales</span></a>
+        </li>
+        <li class="nav-item" data-target="livechat">
+          <a href="#"><i class="fas fa-comments"></i><span>Live Chat</span></a>
+        </li>
+        <li class="nav-item" data-target="orders">
+          <a href="#"><i class="fas fa-shopping-cart"></i><span>Orders</span></a>
+        </li>
+        <li class="nav-item" data-target="messages">
+          <a href="#"><i class="fas fa-envelope"></i><span>Messages</span></a>
+        </li>
+        <li class="nav-item" data-target="settings">
+          <a href="#"><i class="fas fa-cog"></i><span>Settings</span></a>
+        </li>
+      </ul>
+
+      <div class="logout-container">
+        <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT AREA                          -->
+    <!-- Primary dashboard display and navigation   -->
+    <!-- ========================================== -->
+    <main class="main-content">
+
+      <!-- ========================================== -->
+      <!-- TOP NAVIGATION BAR                         -->
+      <!-- Search, notifications, and user profile    -->
+      <!-- ========================================== -->
+      <header class="top-nav">
+        <div class="mobile-toggle" id="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="search-box glass-effect">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search here...">
+        </div>
+
+        <div class="nav-right">
+          <div class="dropdown glass-effect">
+            <select id="dashboard-select">
+              <option value="dashboard">Main Dashboard</option>
+              <option value="analytics">Analytics Dashboard</option>
+              <option value="sales">Sales Dashboard</option>
+            </select>
+          </div>
+
+          <div class="notification-icon glass-icon" id="top-notification" style="cursor: pointer;">
+            <i class="fas fa-bell"></i>
+            <span class="badge" id="top-badge">3</span>
+            <div id="notification-dropdown" class="glass-effect"
+              style="display: none; position: absolute; top: 120%; right: -10px; width: 250px; flex-direction: column; padding: 15px; z-index: 100; cursor: default;">
+              <h4
+                style="margin-bottom: 10px; border-bottom: 1px solid var(--glass-border); padding-bottom: 5px; font-size: 0.9rem;">
+                Notifications</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); padding: 5px 0;"><i
+                  class="fas fa-info-circle text-blue"></i> System update available.</p>
+              <p style="font-size: 0.8rem; color: var(--text-muted); padding: 5px 0;"><i
+                  class="fas fa-shopping-cart text-cyan"></i> 5 new orders received.</p>
+              <p style="font-size: 0.8rem; color: var(--text-muted); padding: 5px 0;"><i
+                  class="fas fa-user-plus text-purple"></i> 2 new users registered.</p>
+            </div>
+          </div>
+
+          <div class="profile" style="position: relative;">
+            <div id="profile-trigger" style="display: flex; align-items: center; gap: 15px; cursor: pointer;">
+              <img id="top-avatar" src="https://i.pravatar.cc/150?img=11" alt="Profile Avatar" class="avatar">
+              <div class="profile-info">
+                <span class="name">Alex Nova</span>
+                <span class="role">Admin</span>
+              </div>
+              <i class="fas fa-chevron-down text-muted"></i>
+            </div>
+            <div id="profile-dropdown" class="glass-effect"
+              style="display: none; position: absolute; top: 120%; right: 0; min-width: 150px; flex-direction: column; gap: 5px; padding: 10px; z-index: 100;">
+              <a href="#"
+                style="color: white; text-decoration: none; padding: 8px; border-radius: 5px; font-size: 0.9rem;"
+                onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                onmouseout="this.style.background='transparent'"><i class="fas fa-user" style="margin-right: 10px;"></i>
+                My Profile</a>
+              <a href="#"
+                style="color: white; text-decoration: none; padding: 8px; border-radius: 5px; font-size: 0.9rem;"
+                onclick="document.querySelector('.nav-item[data-target=\'settings\']').click();"
+                onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                onmouseout="this.style.background='transparent'"><i class="fas fa-cog" style="margin-right: 10px;"></i>
+                Settings</a>
+              <div style="height: 1px; background: var(--glass-border); margin: 5px 0;"></div>
+              <a href="#" class="top-logout-btn"
+                style="color: #ff4d4d; text-decoration: none; padding: 8px; border-radius: 5px; font-size: 0.9rem;"
+                onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                onmouseout="this.style.background='transparent'"><i class="fas fa-sign-out-alt"
+                  style="margin-right: 10px;"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========================================== -->
+      <!-- CONTENT AREA                               -->
+      <!-- Main view populated based on menu selection-->
+      <!-- ========================================== -->
+      <div class="content-wrapper">
+
+        <!-- ========================================== -->
+        <!-- DASHBOARD SECTION                          -->
+        <!-- High-level system metrics and overview     -->
+        <!-- ========================================== -->
+        <div id="section-dashboard" class="content-section active">
+          <div class="page-header">
+            <h1 class="page-title">Dashboard Overview</h1>
+            <p class="page-subtitle">Welcome back, check your system metrics.</p>
+          </div>
+
+          <!-- STATS CARDS -->
+          <div class="stats-grid">
+
+            <div class="stat-card glass-effect animate-float">
+              <div class="stat-icon icon-blue">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div class="stat-info">
+                <h4>Revenue</h4>
+                <h2 id="stat-revenue">$12.4k</h2>
+                <span class="trend positive"><i class="fas fa-arrow-up"></i> +8.5%</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-effect animate-float delay-1">
+              <div class="stat-icon icon-purple">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-info">
+                <h4>Active Users</h4>
+                <h2 id="stat-users">2,341</h2>
+                <span class="trend positive"><i class="fas fa-arrow-up"></i> +12.3%</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-effect animate-float delay-2">
+              <div class="stat-icon icon-pink">
+                <i class="fas fa-box-open"></i>
+              </div>
+              <div class="stat-info">
+                <h4>Orders</h4>
+                <h2 id="stat-orders">456</h2>
+                <span class="trend negative"><i class="fas fa-arrow-down"></i> -2.4%</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-effect animate-float delay-3">
+              <div class="stat-icon icon-cyan">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <div class="stat-info">
+                <h4>Conversion</h4>
+                <h2 id="stat-conversion">3.2%</h2>
+                <span class="trend positive"><i class="fas fa-arrow-up"></i> +1.1%</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CHART & TABLE SECTION -->
+          <div class="details-grid">
+
+            <!-- CHART SECTION -->
+            <div class="chart-container glass-effect">
+              <div class="section-header">
+                <h3>Recent Activity</h3>
+                <div class="filter-dropdown">
+                  <select class="glass-select">
+                    <option>Monthly</option>
+                    <option>Yearly</option>
+                    <option>Weekly</option>
+                  </select>
+                </div>
+              </div>
+              <div class="canvas-wrapper">
+                <canvas id="activityChart"></canvas>
+              </div>
+            </div>
+
+            <!-- TABLE SECTION -->
+            <div class="table-container glass-effect">
+              <div class="section-header">
+                <h3>Recent Orders</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="neon-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-body">
+                    <!-- JS to populate -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- USERS SECTION -->
+        <div id="section-users" class="content-section" style="display: none;">
+          <div class="page-header">
+            <h1 class="page-title">Users List</h1>
+            <p class="page-subtitle">Manage customer accounts and access levels.</p>
+          </div>
+          <div class="table-container glass-effect">
+            <div class="table-responsive">
+              <table class="neon-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- JS to populate -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTS SECTION -->
+        <div id="section-products" class="content-section" style="display: none;">
+          <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h1 class="page-title">Products Menu</h1>
+              <p class="page-subtitle">View and manage restaurant menu items.</p>
+            </div>
+            <button class="btn-glass" onclick="openProductModal()"
+              style="background: rgba(0, 243, 255, 0.1); border-color: var(--neon-blue); color: #fff; font-weight: 600; padding: 10px 20px;"><i
+                class="fas fa-plus"></i> Add Product</button>
+          </div>
+          <div class="table-container glass-effect">
+            <div class="table-responsive">
+              <table class="neon-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="products-table-body">
+                  <!-- JS to populate -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANALYTICS SECTION -->
+        <div id="section-analytics" class="content-section" style="display: none;">
+          <div class="page-header">
+            <h1 class="page-title">Analytics Dashboard</h1>
+            <p class="page-subtitle">Website traffic and user engagement insights.</p>
+          </div>
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="stat-card glass-effect animate-float">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Total Visits</h3>
+              <h2 style="font-size: 2rem; color: var(--neon-cyan);">34,231</h2>
+              <p style="font-size: 0.85rem; color: #00f3ff; margin-top: 5px;"><i class="fas fa-arrow-up"></i> 12.4%</p>
+            </div>
+            <div class="stat-card glass-effect animate-float" style="animation-delay: 0.1s;">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Unique Visitors</h3>
+              <h2 style="font-size: 2rem; color: var(--neon-purple);">12,854</h2>
+              <p style="font-size: 0.85rem; color: #bc13fe; margin-top: 5px;"><i class="fas fa-arrow-up"></i> 8.2%</p>
+            </div>
+            <div class="stat-card glass-effect animate-float" style="animation-delay: 0.2s;">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Bounce Rate</h3>
+              <h2 style="font-size: 2rem; color: var(--neon-pink);">42.1%</h2>
+              <p style="font-size: 0.85rem; color: #ff4d4d; margin-top: 5px;"><i class="fas fa-arrow-down"></i> 1.5%</p>
+            </div>
+          </div>
+          <div class="details-grid" style="grid-template-columns: 2fr 1fr;">
+            <div class="chart-container glass-effect">
+              <div class="section-header">
+                <h3>Traffic Overview</h3>
+              </div>
+              <div class="chart-wrapper"><canvas id="analyticsTrafficChart"></canvas></div>
+            </div>
+            <div class="chart-container glass-effect">
+              <div class="section-header">
+                <h3>Device Usage</h3>
+              </div>
+              <div class="chart-wrapper"><canvas id="analyticsDeviceChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SALES SECTION -->
+        <div id="section-sales" class="content-section" style="display: none;">
+          <div class="page-header">
+            <h1 class="page-title">Sales Dashboard</h1>
+            <p class="page-subtitle">Detailed revenue and performance metrics.</p>
+          </div>
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="stat-card glass-effect animate-float">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Monthly Revenue</h3>
+              <h2 id="sales-monthly-rev" style="font-size: 2rem; color: var(--neon-cyan);">Rs. 0</h2>
+              <p style="font-size: 0.85rem; color: #00f3ff; margin-top: 5px;"><i class="fas fa-arrow-up"></i> 24.5%</p>
+            </div>
+            <div class="stat-card glass-effect animate-float" style="animation-delay: 0.1s;">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Avg Order Value</h3>
+              <h2 id="sales-avg-order" style="font-size: 2rem; color: var(--neon-purple);">Rs. 0</h2>
+              <p style="font-size: 0.85rem; color: #bc13fe; margin-top: 5px;"><i class="fas fa-arrow-up"></i> 5.2%</p>
+            </div>
+            <div class="stat-card glass-effect animate-float" style="animation-delay: 0.2s;">
+              <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;">Total Items Sold</h3>
+              <h2 id="sales-items-sold" style="font-size: 2rem; color: var(--neon-pink);">0</h2>
+              <p style="font-size: 0.85rem; color: #ff007f; margin-top: 5px;"><i class="fas fa-arrow-up"></i> 18.3%</p>
+            </div>
+          </div>
+          <div class="details-grid">
+            <div class="chart-container glass-effect" style="grid-column: 1 / -1;">
+              <div class="section-header">
+                <h3>Revenue by Month</h3>
+              </div>
+              <div class="chart-wrapper"><canvas id="salesBarChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+        <!-- ORDERS SECTION -->
+        <div id="section-orders" class="content-section" style="display: none;">
+          <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h1 class="page-title">Orders Management</h1>
+              <p class="page-subtitle">Track, complete, and manage customer orders.</p>
+            </div>
+          </div>
+
+          <div class="details-grid" style="grid-template-columns: 1fr; gap: 40px;">
+
+            <!-- PENDING ORDERS -->
+            <div class="table-container glass-effect">
+              <div class="section-header">
+                <h3><i class="fas fa-clock text-pink" style="margin-right: 10px;"></i> Pending Orders</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="neon-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer & Contact</th>
+                      <th>Delivery / Notes</th>
+                      <th>Product</th>
+                      <th>Status</th>
+                      <th>Total</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pending-orders-tbody">
+                    <!-- JS to populate -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- COMPLETED ORDERS -->
+            <div class="table-container glass-effect">
+              <div class="section-header">
+                <h3><i class="fas fa-check-circle text-cyan" style="margin-right: 10px;"></i> Completed Orders</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="neon-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Product</th>
+                      <th>Status</th>
+                      <th>Total</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="completed-orders-tbody">
+                    <!-- JS to populate -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- MESSAGES SECTION -->
+        <div id="section-messages" class="content-section" style="display: none;">
+          <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h1 class="page-title">Contact Messages</h1>
+              <p class="page-subtitle">Read and manage inquiries from customers.</p>
+            </div>
+          </div>
+          <div class="table-container glass-effect">
+            <div class="table-responsive">
+              <table class="neon-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="messages-table-body">
+                  <!-- JS to populate -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE CHAT SECTION -->
+        <div id="section-livechat" class="content-section" style="display: none;">
+          <div class="page-header">
+            <h1 class="page-title">Live Support</h1>
+            <p class="page-subtitle">Chat with customers in real-time.</p>
+          </div>
+          <div style="display: flex; gap: 20px; height: 60vh;">
+            <!-- Session List -->
+            <div class="glass-effect"
+              style="flex: 1; border-radius: 15px; display: flex; flex-direction: column; overflow: hidden;">
+              <h3 style="padding: 15px; border-bottom: 1px solid var(--glass-border);">Active Chats</h3>
+              <div id="admin-chat-sessions" style="flex: 1; overflow-y: auto;">
+              </div>
+            </div>
+
+            <!-- Chat Window -->
+            <div class="glass-effect"
+              style="flex: 2; border-radius: 15px; display: flex; flex-direction: column; overflow: hidden; position: relative;">
+              <h3 id="admin-chat-header-name"
+                style="padding: 15px; border-bottom: 1px solid var(--glass-border); color: var(--secondary);">Select a
+                conversation</h3>
+              <div id="admin-chat-msg-container" class="chat-messages"
+                style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+                <p style="text-align:center; color: var(--text-muted); margin-top: auto; margin-bottom:auto;">No chat
+                  selected.</p>
+              </div>
+              <div id="admin-chat-input-area" class="chat-input-area"
+                style="display: none; padding: 15px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; background: rgba(0,0,0,0.2);">
+                <input type="text" id="admin-chat-input" placeholder="Type reply here..."
+                  style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 10px 15px; color: white; outline: none;"
+                  onkeypress="if(event.key === 'Enter') window.sendAdminChat()">
+                <button onclick="window.sendAdminChat()"
+                  style="width: 40px; height: 40px; border-radius: 50%; background: var(--secondary); border: none; color: #000; cursor: pointer; transition: transform 0.3s;"><i
+                    class="fas fa-paper-plane"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTINGS SECTION -->
+        <div id="section-settings" class="content-section" style="display: none;">
+          <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h1 class="page-title">Settings</h1>
+              <p class="page-subtitle">Manage system admins and preferences.</p>
+            </div>
+          </div>
+          <div class="details-grid">
+            <div class="glass-effect" style="padding: 30px;">
+              <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Add
+                New Admin</h3>
+              <form id="admin-form" onsubmit="saveAdmin(event)">
+                <div style="margin-bottom: 15px;">
+                  <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Admin
+                    Name</label>
+                  <input type="text" id="admin-name" required
+                    style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                  <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Email
+                    Address</label>
+                  <input type="email" id="admin-email" required
+                    style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <label
+                    style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Password</label>
+                  <input type="text" id="admin-pass" required
+                    style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+                </div>
+                <button type="submit" class="btn-glass"
+                  style="width: 100%; background: rgba(0,243,255,0.1); border-color: var(--neon-blue); font-weight: 600; cursor: pointer;">Create
+                  Admin</button>
+              </form>
+            </div>
+
+            <div class="table-container glass-effect" style="height: fit-content;">
+              <div class="section-header">
+                <h3>Admin Users</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="neon-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admins-table-body">
+                    <!-- JS to populate -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- PRODUCT MODAL                              -->
+  <!-- Popup overlay for adding/editing items     -->
+  <!-- ========================================== -->
+  <div id="product-modal" class="modal-overlay"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 999; justify-content: center; align-items: center;">
+    <div class="glass-effect" style="width: 400px; padding: 30px; position: relative;">
+      <button onclick="closeProductModal()"
+        style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;"><i
+          class="fas fa-times"></i></button>
+      <h3 id="modal-product-title" style="margin-bottom: 20px; font-size: 1.5rem;">Add Product</h3>
+      <form id="product-form" onsubmit="saveProduct(event)">
+        <input type="hidden" id="prod-id">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Product
+            Name</label>
+          <input type="text" id="prod-name" required
+            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label
+            style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Category</label>
+          <input type="text" id="prod-category" required
+            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Price
+            (Rs.)</label>
+          <input type="number" id="prod-price" required step="0.01"
+            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;">
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Image
+            URL or Upload File</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input type="text" id="prod-image" placeholder="https://"
+              oninput="document.getElementById('prod-image-preview').src = this.value || 'https://ui-avatars.com/api/?name=Product&background=random&color=fff&size=256'"
+              style="flex: 2; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none; min-width: 0;">
+            <input type="file" id="prod-image-file" accept="image/*" style="display: none;"
+              onchange="window.uploadProductImage(this)">
+            <button type="button" class="btn-glass" onclick="document.getElementById('prod-image-file').click()"
+              style="flex: 1; background: rgba(0,243,255,0.1); border-color: var(--neon-cyan); color: var(--neon-cyan); font-weight: 500; cursor: pointer;">Upload</button>
+          </div>
+          <div style="text-align: center; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px;">
+            <img id="prod-image-preview"
+              src="https://ui-avatars.com/api/?name=Product&background=random&color=fff&size=256"
+              style="max-width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--glass-border);"
+              alt="Preview"
+              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Error&background=ff4d4d&color=fff&size=256'">
+          </div>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label
+            style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Description</label>
+          <textarea id="prod-desc" rows="3"
+            style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; outline: none;"></textarea>
+        </div>
+        <button type="submit" class="btn-glass"
+          style="width: 100%; background: rgba(0,243,255,0.1); border-color: var(--neon-blue); font-weight: 600; cursor: pointer;">Save
+          Product</button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="admin_v6.js?v=11"></script>
+  <button onclick="runDiagnostics()"
+    style="position: fixed; bottom: 10px; right: 10px; opacity: 0.3; background: none; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.6rem; cursor: pointer; padding: 2px 5px; border-radius: 4px; z-index: 10000;">Run
+    Diagnostics</button>
+  <script>
+    function runDiagnostics() {
+      let report = "ADMIN DIAGNOSTICS:\n\n";
+      report += "1. CompleteOrder Func: " + (typeof window.adminCompleteOrder) + "\n";
+      report += "2. DeleteOrder Func: " + (typeof window.adminDeleteOrder) + "\n";
+      report += "3. ShowToast Func: " + (typeof window.showToast) + "\n";
+      report += "4. Toast Container: " + (document.getElementById('toast-container') ? "Found" : "Missing") + "\n";
+
+      fetch('api/get_orders.php').then(r => {
+        report += "5. API get_orders: " + r.status + " " + r.statusText + "\n";
+        alert(report);
+      }).catch(e => {
+        report += "5. API get_orders: FAILED (" + e.message + ")\n";
+        alert(report);
+      });
+    }
+  </script>
+</body>
+
+</html>

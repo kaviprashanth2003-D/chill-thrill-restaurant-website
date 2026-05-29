@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Chill Thrill</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .cart-header { text-align: center; padding: 120px 20px 40px; background: var(--card-bg); border-bottom: var(--glass-border); position: relative; overflow: hidden; }
+    .cart-header::before { content: ''; position: absolute; top: -50px; left: -50px; width: 300px; height: 300px; background: var(--primary); filter: blur(150px); opacity: 0.1; }
+    
+    .cart-wrap { display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; align-items: flex-start; }
+    .cart-items { flex: 2; min-width: 300px; display: flex; flex-direction: column; gap: 20px; }
+    .cart-summary { flex: 1; min-width: 300px; background: var(--card-bg); padding: 30px; border-radius: 20px; border: var(--glass-border); position: sticky; top: 100px; }
+    
+    .cart-item { display: flex; align-items: center; gap: 20px; background: var(--card-bg); padding: 20px; border-radius: 15px; border: var(--glass-border); transition: var(--transition); }
+    .cart-item:hover { transform: translateX(10px); border-color: var(--secondary); box-shadow: 0 4px 15px rgba(0, 243, 255, 0.1); }
+    .cart-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+    .cart-details { flex: 1; }
+    .cart-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
+    .cart-price { color: var(--primary); font-weight: bold; }
+    
+    .cart-actions { display: flex; align-items: center; gap: 15px; }
+    .btn-qty { width: 35px; height: 35px; border-radius: 50%; background: transparent; border: 1px solid var(--text-muted); color: var(--text-main); font-size: 1.2rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+    .btn-qty:hover { background: var(--primary); border-color: var(--primary); color: white; }
+    .cart-qty { font-weight: bold; font-size: 1.1rem; width: 20px; text-align: center; }
+    .btn-remove { background: transparent; border: none; color: #ff4444; font-size: 1.2rem; cursor: pointer; transition: var(--transition); padding: 10px; }
+    .btn-remove:hover { transform: scale(1.2); }
+    
+    .summary-title { font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+    .summary-line { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.1rem; color: var(--text-muted); }
+    .summary-total { display: flex; justify-content: space-between; margin-bottom: 30px; font-size: 1.5rem; font-weight: 800; color: var(--primary); border-top: 1px solid var(--border-color); padding-top: 20px; }
+    
+    @media (max-width: 768px) {
+      .cart-item { flex-direction: column; text-align: center; }
+      .cart-item:hover { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader"><div class="spinner"></div></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Chill<span class="text-pink">Thrill</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <a href="cart.html" class="cart-btn active" aria-label="Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-count">0</span>
+        </a>
+        <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="cart-header">
+    <h1 class="animate-text" style="font-size: 3.5rem; font-weight: 800;">Your <span class="text-blue">Cart</span></h1>
+    <p class="animate-text-delay" style="color: var(--text-muted); margin-top: 10px;">Review your items and checkout securely.</p>
+  </div>
+
+  <section class="container" style="min-height: 50vh;">
+    <div class="cart-wrap">
+      <div class="cart-items" id="cart-container">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="cart-summary animate-text-delay-2">
+        <h2 class="summary-title">Order Summary</h2>
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span>$<span id="cart-subtotal">...</span></span>
+        </div>
+        <div class="summary-line">
+          <span>Tax</span>
+          <span>Calculated at checkout</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span>$<span id="cart-total">0.00</span></span>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 15px;" onclick="alert('Proceeding to Checkout! Thanks for visiting Chill Thrill.')">Proceed to Checkout</button>
+        <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" onclick="window.location.href='menu.html'">Continue Shopping</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Chill Thrill. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
